@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "01efdb0a-2db7-49f1-bdec-aaf513bc762c",
+		"name": "Work Order API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET TOKEN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "super_admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api-v1/sign-in",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW ALL WORK ORDERS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMDgyNDcxLCJleHAiOjE2MTIwODYwNzEsIm5iZiI6MTYxMjA4MjQ3MSwianRpIjoiZ0R1Tk4xajM2bEluYWdNdiIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.1PqvA3SGL_oo324rr2pphNeE17DPiR6lxmfd2KHORUk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api-v1/show-workorder",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"show-workorder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW WORK ORDER BY WOID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMDc3NTAyLCJleHAiOjE2MTIwODExMDIsIm5iZiI6MTYxMjA3NzUwMiwianRpIjoiU25NeWVwbjN0b3VMYTNTcyIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.kJj9JOf6HpNAhLiaFb_Xd5bGF2C76Fx98HfonDBZuBo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api-v1/get-workorder/365253820",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"get-workorder",
+						"365253820"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE WORK ORDER",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMDgxMjMyLCJleHAiOjE2MTIwODQ4MzIsIm5iZiI6MTYxMjA4MTIzMiwianRpIjoib0ZjNzNRUTkwWWtGSThkTCIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.e1cKXQyI6CNtMFHeHBAkx9Dl6GIP9-HSRKdN9zCTLIg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "woid",
+							"value": "343243212",
+							"type": "text"
+						},
+						{
+							"key": "wo_name",
+							"value": "ASD1",
+							"type": "text"
+						},
+						{
+							"key": "prodid",
+							"value": "001",
+							"type": "text"
+						},
+						{
+							"key": "customerid",
+							"value": "cs1",
+							"type": "text"
+						},
+						{
+							"key": "prod_start_date",
+							"value": "2021-02-01 01:00:01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api-v1/save-workorder",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"save-workorder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE WORK ORDER",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMDc3NTAyLCJleHAiOjE2MTIwODExMDIsIm5iZiI6MTYxMjA3NzUwMiwianRpIjoiU25NeWVwbjN0b3VMYTNTcyIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.kJj9JOf6HpNAhLiaFb_Xd5bGF2C76Fx98HfonDBZuBo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "wo_name",
+							"value": "ASD12",
+							"type": "text"
+						},
+						{
+							"key": "prodid",
+							"value": "0012",
+							"type": "text"
+						},
+						{
+							"key": "customerid",
+							"value": "cs12",
+							"type": "text"
+						},
+						{
+							"key": "prod_start_date",
+							"value": "2021-02-01 15:00:01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api-v1/update-workorder/1123123212341",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"update-workorder",
+						"1123123212341"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE WORK ORDER",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMTEzODQ4LCJleHAiOjE2MTIxMTc0NDgsIm5iZiI6MTYxMjExMzg0OCwianRpIjoiS2NaMXV3NDdWa3F4ZGI0NSIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.VLP_YWHu1OhrrG4HQ32XcFvNwN3_7kaybkJwFHzHxGw"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api-v1/delete-workorder/999",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"delete-workorder",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW FIREBASE WORK ORDER",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMTEzODQ4LCJleHAiOjE2MTIxMTc0NDgsIm5iZiI6MTYxMjExMzg0OCwianRpIjoiS2NaMXV3NDdWa3F4ZGI0NSIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.VLP_YWHu1OhrrG4HQ32XcFvNwN3_7kaybkJwFHzHxGw"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api-v1/show-firebase-wo",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"show-firebase-wo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW FIREBASE WORK ORDER BY WOID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMTEzODQ4LCJleHAiOjE2MTIxMTc0NDgsIm5iZiI6MTYxMjExMzg0OCwianRpIjoiS2NaMXV3NDdWa3F4ZGI0NSIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.VLP_YWHu1OhrrG4HQ32XcFvNwN3_7kaybkJwFHzHxGw"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api-v1/get-firebase-wo/wo_1612115229",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"get-firebase-wo",
+						"wo_1612115229"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE FIREBASE WORK ORDER",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMTEzODQ4LCJleHAiOjE2MTIxMTc0NDgsIm5iZiI6MTYxMjExMzg0OCwianRpIjoiS2NaMXV3NDdWa3F4ZGI0NSIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.VLP_YWHu1OhrrG4HQ32XcFvNwN3_7kaybkJwFHzHxGw"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "woid",
+							"value": "3432432122",
+							"type": "text"
+						},
+						{
+							"key": "wo_name",
+							"value": "ASD123",
+							"type": "text"
+						},
+						{
+							"key": "customerid",
+							"value": "cs12ss",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api-v1/save-firebase-wo",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"save-firebase-wo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE FIREBASE WORK ORDER",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMTEzODQ4LCJleHAiOjE2MTIxMTc0NDgsIm5iZiI6MTYxMjExMzg0OCwianRpIjoiS2NaMXV3NDdWa3F4ZGI0NSIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.VLP_YWHu1OhrrG4HQ32XcFvNwN3_7kaybkJwFHzHxGw"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "wo_name",
+							"value": "ASD12",
+							"type": "text"
+						},
+						{
+							"key": "prodid",
+							"value": "0012",
+							"type": "text"
+						},
+						{
+							"key": "customerid",
+							"value": "cs12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api-v1/update-firebase-wo/1123123212341",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"update-firebase-wo",
+						"1123123212341"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE FIREBASE WORK ORDER",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpLXYxXC9zaWduLWluIiwiaWF0IjoxNjEyMTEzODQ4LCJleHAiOjE2MTIxMTc0NDgsIm5iZiI6MTYxMjExMzg0OCwianRpIjoiS2NaMXV3NDdWa3F4ZGI0NSIsInN1YiI6InN1cGVyX2FkbWluIiwicHJ2IjoiZjY0ZDQ4YTZjZWM3YmRmYTdmYmY4OTk0NTRiNDg4YjNlNDYyNTIwYSJ9.VLP_YWHu1OhrrG4HQ32XcFvNwN3_7kaybkJwFHzHxGw"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api-v1/delete-firebase-wo/1612115168",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"delete-firebase-wo",
+						"1612115168"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

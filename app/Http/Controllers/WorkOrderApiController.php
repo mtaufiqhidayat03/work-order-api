@@ -41,27 +41,8 @@ class WorkOrderApiController extends Controller
         }
     }
 
-    public function destroy(Request $request, $woid)
-    {
-        $data = WorkOrder::where('woid', intval($woid))->first();
-        if ($data) {
-            try {
-                $data->delete();
-                return response()->json(['status' => 'OK',
-                    'message' => 'Delete data succesfully'], 200);
-            } catch (\Exception $e) {
-                return response()->json(['status' => 'ERR', 'message' => 'Error: ' . $e], 400);
-            }
-
-        } else {
-            return response()->json(['status' => 'ERR',
-                'message' => 'Data which you are looking for can not be found'], 404);
-        }
-    }
-
     public function store(Request $request)
     {
-
         $data = new WorkOrder();
         $wo = $request->all();
         $data->woid = intval($wo['woid']);
@@ -78,14 +59,15 @@ class WorkOrderApiController extends Controller
             'prod_start_date' => 'required'
         ]);
         if ($validator->fails()) {
-            return response()->json(['status' => 'ERR', 'message' => 'Check all fields, there are not must be empty'], 400);
+            return response()->json(['status' => 'ERR',
+                'message' => 'Check all fields, there are not must be empty'], 400);
         } else {
             $checkWO = WorkOrder::where('woid', $data->woid)->first();
             if (!$checkWO) {
                 $data->save();
                 return response()->json(['status' => 'OK', 'message' => 'Save data succefully'], 200);
             } else {
-                return response()->json(['status' => 'ERR', 'message' => 'Error in save data'], 400);
+                return response()->json(['status' => 'ERR', 'message' => 'Error in save data. Duplicate woid is not allowed'], 400);
             }
         }
     }
@@ -107,7 +89,8 @@ class WorkOrderApiController extends Controller
                 'prod_start_date' => 'required'
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'ERR', 'message' => 'Check all fields, there are not must be empty'], 400);
+                return response()->json(['status' => 'ERR',
+                    'message' => 'Check all fields, there are not must be empty'], 400);
             } else {
                 try {
                     $data->save();
@@ -122,5 +105,23 @@ class WorkOrderApiController extends Controller
                 'message' => 'Data which you are looking for can not be found'], 404);
         }
 
+    }
+
+    public function destroy(Request $request, $woid)
+    {
+        $data = WorkOrder::where('woid', intval($woid))->first();
+        if ($data) {
+            try {
+                $data->delete();
+                return response()->json(['status' => 'OK',
+                    'message' => 'Delete data succesfully'], 200);
+            } catch (\Exception $e) {
+                return response()->json(['status' => 'ERR', 'message' => 'Error: ' . $e], 400);
+            }
+
+        } else {
+            return response()->json(['status' => 'ERR',
+                'message' => 'Data which you are looking for can not be found'], 404);
+        }
     }
 }
