@@ -12,14 +12,11 @@ class RateLimitAccess extends ThrottleRequests
 {
     protected function resolveRequestSignature($request)
     {
-        return sha1(implode('|', [
-            $request->method(),
-            $request->root(),
-            $request->path(),
-            $request->ip(),
-            $request->query('access_token')
-            ]
-        ));
-        return $request->fingerprint();
+        return sha1(
+            $request->method() .
+            '|' . $request->server('SERVER_NAME') .
+            '|' . $request->path() .
+            '|' . $request->ip()
+        );
     }
 }

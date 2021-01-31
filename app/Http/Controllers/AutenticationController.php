@@ -3,12 +3,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
-use Firebase\JWT\ExpiredException;
-use Firebase\JWT\JWT;
+use Illuminate\Support\Facades\Auth;
 
 class AutenticationController extends Controller
 {
@@ -17,37 +16,25 @@ class AutenticationController extends Controller
 
     }
 
-    public function generateToken($id) {
-        $key = env('APP_KEY');
-        $payload = [
-            'iss' => 'lumen-jwt',
-            'sub' => $id,
-            'iat' => time(),
-            'exp' => time() + (60 * 60),
-        ];
-        return JWT::encode($payload, $key);
-    }
-
-    public function Authenticate(Request $request) {
-        $user = User::where('username', $request->input('username'))->first();
-        if (!user) {
-            return response()->json([
-                'error' => 'Username doesnot exist'
-            ], 400);
+    public function AuthenticateToken(Request $request)
+    {
+        $user = Users::where('username', $request->input('username'))->first();
+        if (!$user) {
+            return response()->json(['status' => 'ERR', 'message' => 'Username does not exist'],400);
         }
-
-        if(Hash::check($request->input('password'), $user->password)) {
-            $token = $this->generateToken($user->id);
+        if (Hash::check($request->input('password'), $user->password)) {
+            $credentials = $request->only(['username', 'password']);
+            if (!$token = Auth::attempt($credentials)) {
+                return response()->json(['status' => 'ERR',
+                    'message' => 'Unauthorized access. Token is invalid or expired'], 401);
+            }
+            $getToken = $this->replyWithToken($token);
             $user->api_token = $token;
             $user->save();
-
-            return response()->json([
-                'token' => $token
-            ], 200);
+            return $getToken;
         } else {
-            return reponse()->json([
-                'error' => 'Password doesnot match'
-            ], 400);
+            return response()->json(['status' => 'ERR', 'message' => 'Password does not match'],400);
         }
     }
+
 }

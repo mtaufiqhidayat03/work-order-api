@@ -82,6 +82,7 @@ $app->configure('app');
 
 $app->routeMiddleware([
      'thorttle' => App\Http\Middleware\RateLimitAccess::class,
+     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 /*
 |--------------------------------------------------------------------------
@@ -98,7 +99,9 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+$app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 $app->withFacades();
 

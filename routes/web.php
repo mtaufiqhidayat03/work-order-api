@@ -13,17 +13,26 @@
 |
 */
 
-use App\Http\Controllers\Api\workOrderApiController;
-use App\Http\Controllers\AutenticationController;
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/key', function() {
+    return \Illuminate\Support\Str::random(32);
+});
+
 $router->group(['prefix'=> 'api-v1'], function() use ($router) {
-    $router->group(['prefix' => 'auth'], function () use ($router) {
-        $router->post('sign-in', ['uses' => AutenticationController::Authenticate, 'middleware' => 'thorttle:1,10']);
-    });
-    $router->get('show-workorder', ['uses' => workOrderApiController::index]);
-    $router->get('get-workorder/{woid}', ['uses' => workOrderApiController::show]);
+    $router->post('sign-in', ['uses' => 'AutenticationController@AuthenticateToken',
+        'middleware' => 'thorttle:10,1']);
+    $router->get('show-workorder', ['uses' => 'WorkOrderApiController@index',
+        'middleware' => 'thorttle:300,1']);
+    $router->get('get-workorder/{woid}', ['uses' => 'WorkOrderApiController@show',
+        'middleware' => 'thorttle:500,1']);
+    $router->post('save-workorder', ['uses' => 'WorkOrderApiController@store',
+        'middleware' => 'thorttle:100,1']);
+    $router->post('update-workorder/{woid}', ['uses' => 'WorkOrderApiController@update',
+        'middleware' => 'thorttle:50,1']);
+    $router->get('delete-workorder/{woid}', ['uses' => 'WorkOrderApiController@destroy',
+        'middleware' => 'thorttle:100,1']);
 });
