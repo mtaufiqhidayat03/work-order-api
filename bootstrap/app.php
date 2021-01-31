@@ -102,6 +102,7 @@ $app->routeMiddleware([
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Kreait\Laravel\Firebase\ServiceProvider::class);
 
 $app->withFacades();
 

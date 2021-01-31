@@ -9,6 +9,7 @@
         "firebase/php-jwt": "^5.2",
         "illuminate/routing": "^8.25",
         "jenssegers/mongodb": "^3.8",
+        "kreait/laravel-firebase": "^3.0",
         "laravel/lumen-framework": "^8.0",
         "mongodb/mongodb": "^1.8",
         "okta/jwt-verifier": "^1.0",

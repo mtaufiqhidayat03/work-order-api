@@ -35,4 +35,14 @@ $router->group(['prefix'=> 'api-v1'], function() use ($router) {
         'middleware' => 'thorttle:50,1']);
     $router->get('delete-workorder/{woid}', ['uses' => 'WorkOrderApiController@destroy',
         'middleware' => 'thorttle:100,1']);
+    $router->get('show-firebase-wo', ['uses' => 'FirebaseRealtimeController@index',
+        'middleware' => 'thorttle:300,1']);
+    $router->get('get-firebase-wo/{woid}', ['uses' => 'FirebaseRealtimeController@show',
+        'middleware' => 'thorttle:500,1']);
+    $router->post('save-firebase-wo', ['uses' => 'FirebaseRealtimeController@store',
+        'middleware' => 'thorttle:100,1']);
+    $router->post('update-firebase-wo/{woid}', ['uses' => 'FirebaseRealtimeController@update',
+        'middleware' => 'thorttle:50,1']);
+    $router->get('delete-firebase-wo/{woid}', ['uses' => 'FirebaseRealtimeController@destroy',
+        'middleware' => 'thorttle:100,1']);
 });
