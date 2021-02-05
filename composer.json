@@ -7,13 +7,16 @@
     "require": {
         "php": "^7.3|^8.0",
         "firebase/php-jwt": "^5.2",
+        "google/cloud-firestore": "^1.19",
+        "grpc/grpc": "^v1.27.0",
         "illuminate/routing": "^8.25",
         "jenssegers/mongodb": "^3.8",
         "kreait/laravel-firebase": "^3.0",
         "laravel/lumen-framework": "^8.0",
         "mongodb/mongodb": "^1.8",
         "okta/jwt-verifier": "^1.0",
-        "tymon/jwt-auth": "dev-develop"
+        "tymon/jwt-auth": "dev-develop",
+		"ahsankhatri/firestore-php": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
